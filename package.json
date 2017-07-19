@@ -36,5 +36,17 @@
   },
   "dependencies": {
     "ethereumjs-testrpc": "^4.0.1"
-  }
+  },
+  "main": "truffle.js",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RSijelmass/votingchain.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RSijelmass/votingchain/issues"
+  },
+  "homepage": "https://github.com/RSijelmass/votingchain#readme"
 }
