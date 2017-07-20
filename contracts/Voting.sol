@@ -39,11 +39,9 @@ contract Voting {
 
     // This function increments the vote count for the specified candidate. This
     // is equivalent to casting a vote
-    function voteForCandidate(bytes32 candidate) returns (bool) {
+    function voteForCandidate(bytes32 candidate) returns (uint8) {
     //  if (validCandidate(candidate) ) {
-           votesReceived[candidate] += 1;
-           CastVote(msg.sender, candidate);
-           return true;
+           return votesReceived[candidate] += 1;
   //    }
   //    return false;
     }
