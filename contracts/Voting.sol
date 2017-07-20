@@ -30,19 +30,19 @@ contract Voting {
 
     // This function returns the total votes a candidate has received so far
     function totalVotesFor(bytes32 candidate) returns (uint8) {
-    //  if (validCandidate(candidate)) {
+      if (validCandidate(candidate)) {
         return votesReceived[candidate];
-      //}
-    //  return 0;
+       }
+      return 0;
     }
 
     // This function increments the vote count for the specified candidate. This
     // is equivalent to casting a vote
     function voteForCandidate(bytes32 candidate) returns (uint8) {
-    //  if (validCandidate(candidate) ) {
+      if (validCandidate(candidate)) {
            return votesReceived[candidate] += 1;
-  //    }
-  //    return false;
+      }
+      return 0;
     }
 
     function validCandidate(bytes32 candidate) returns (bool) {

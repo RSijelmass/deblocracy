@@ -18,22 +18,37 @@ contract('Voting', function(accounts) {
     });
   });
 
-
   it('can cast a vote', function() {
     return VotingObject.deployed().then(function(instance) {
-      return instance.voteForCandidate.call("Anna", {from: accounts[0]})
+      return instance.voteForCandidate.call("Alice", {from: accounts[0]})
     }).then(function(votesReceived){
       assert.equal(votesReceived.valueOf(), 1, "Managed to somehow magically vote")
     });
   });
 
+  it('can only vote for a valid candidate', function() {
+    return VotingObject.deployed().then(function(instance) {
+      return instance.voteForCandidate.call("Dave", {from: accounts[0]})
+    }).then(function(votesReceived){
+      assert.equal(votesReceived.valueOf(), 0, "Totally didn't vote")
+    });
+  });
 
   it('can see that a vote has been cast', function() {
     return VotingObject.deployed().then(function(instance) {
-      instance.voteForCandidate("Anna", {from: accounts[0]})
-			return instance.totalVotesFor.call("Anna")
+      instance.voteForCandidate("Alice", {from: accounts[0]})
+			return instance.totalVotesFor.call("Alice")
     }).then(function(votes){
-      assert.equal(votes.toNumber(), 1, "Anna got a vote!");
+      assert.equal(votes.toNumber(), 1, "Alice got a vote!");
     });
   });
+
+  it('tallies votes for valid candidates only', function() {
+    return VotingObject.deployed().then(function(instance) {
+      instance.voteForCandidate("Dave", {from: accounts[0]})
+      return instance.totalVotesFor.call("Dave")
+    }).then(function(votes){
+      assert.equal(votes.toNumber(), 0, "Dave isn't valid!");
+    });
+  })
 });
