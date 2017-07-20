@@ -1,6 +1,24 @@
 var VotingObject = artifacts.require("./Voting.sol");
 
 contract('Voting', function(accounts) {
+
+  it('can intialize with candidates', function() {
+    return VotingObject.deployed().then(function(instance) {
+      return instance.getCandidates.call({from: accounts[0]})
+    }).then(function(ballot) {
+      assert.equal(ballot.length, 3, "Should have 3 candidates")
+    });
+  });
+
+  it('can check if a candidate is valid', function() {
+    return VotingObject.deployed().then(function(instance) {
+      return instance.validCandidate.call("Alice", {from: accounts[0]})
+    }).then(function(candidate){
+      assert.equal(candidate, true, "But Alice is real!")
+    });
+  });
+
+
   it('can cast a vote', function() {
     return VotingObject.deployed().then(function(instance) {
       return instance.voteForCandidate.call("Anna", {from: accounts[0]})

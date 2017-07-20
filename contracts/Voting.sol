@@ -12,7 +12,6 @@ contract Voting {
   /* Solidity doesn't let you pass in an array of strings in the constructor (yet).
   We will use an array of bytes32 instead to store the list of candidates
   */
-  /*event Vote(address indexed _from, address indexed _to, uint256 _value);*/
 
   bytes32[] public candidateList;
 
@@ -20,13 +19,13 @@ contract Voting {
   deploy the contract to the blockchain. When we deploy the contract,
   we will pass an array of candidates who will be contesting in the election
   */
-    /*function Voting() {
-      candidateList[tx.origin] = bytes32['Charlotte', 'Kavita', 'Colin'];
-    }*/
-    event CastVote(address voter, bytes32 whoTheyVotedFor);
 
     function Voting(bytes32[] candidateNames) {
       candidateList = candidateNames;
+    }
+
+    function getCandidates() returns (bytes32[]) {
+      return candidateList;
     }
 
     // This function returns the total votes a candidate has received so far
