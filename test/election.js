@@ -1,0 +1,59 @@
+var Election = artifacts.require("./Election.sol")
+
+contract('Election', function() {
+
+  it("begins elections with candidates", function() {
+
+    var election;
+
+    return Election.new(['Yes', 'No']).then(function(instance) {
+      election = instance;
+      return election.getCandidatesCount();
+    }).then(function(number_of_candidates) {
+      assert.equal(number_of_candidates, 2 , 'Candidates should be logged')
+    });
+  });
+
+  it("starts elections with zero votes for candidates", function() {
+    var election;
+
+    return Election.new(['Yes', 'No']).then(function(instance) {
+      election = instance;
+      return election.getCandidateVotes(0);
+    }).then(function(totalVotes) {
+      assert.equal(totalVotes, 0, 'No votes should be logged')
+    }).then(function() {
+      return election.getCandidateVotes(1);
+    }).then(function(totalVotes) {
+      assert.equal(totalVotes,0, 'No votes')
+    });
+  });
+
+  it("allows voter to vote Yes", function() {
+    var election;
+
+    return Election.new(['Yes', 'No']).then(function(instance) {
+      election = instance;
+      return election.vote(0);
+    }).then(function() {
+      return election.getCandidateVotes(0);
+    }).then(function(totalVotes) {
+      assert.equal(totalVotes, 1, 'Vote was not registered!')
+    });
+  });
+
+    it("allows voter to vote No", function() {
+      var election;
+
+      return Election.new(['Yes', 'No']).then(function(instance) {
+        election = instance;
+        return election.vote(1);
+      }).then(function() {
+        return election.getCandidateVotes(1);
+      }).then(function(totalVotes) {
+        assert.equal(totalVotes, 1, 'Vote was not registered!')
+      });
+    });
+
+
+});
