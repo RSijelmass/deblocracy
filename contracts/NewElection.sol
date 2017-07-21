@@ -1,6 +1,6 @@
 pragma solidity ^0.4.4;
 
-contract Election {
+contract NewElection {
 
   struct Voter {
     bool voted;
@@ -12,26 +12,39 @@ contract Election {
     uint voteCount;
   }
 
+  struct Election {
+    address owner;
+    string title;
+    uint deadline;
+    bool status;
+    Candidate[] candidates;
+  }
+
   event Voted(uint candidateID, address voter);
 
-  mapping(address => Voter) public voters;
-  Candidate[] public candidates;
+  Election public currentElection;
 
-  function Election(bytes32[] candidateNames) {
+  mapping(address => Voter) public voters;
+
+  function NewElection(string _title, uint _deadline, bytes32[] candidateNames) {
     for (uint i = 0; i < candidateNames.length; i++) {
-      candidates.push(Candidate({
+      currentElection.candidates.push(Candidate({
         name: candidateNames[i],
         voteCount: 0
         }));
       }
+      currentElection.owner = msg.sender;
+      currentElection.title = _title;
+      currentElection.deadline = _deadline;
+      currentElection.status = true;
     }
 
     function getCandidatesCount() constant returns (uint) {
-      return candidates.length;
+      return currentElection.candidates.length;
     }
 
     function getCandidateVotes(uint candidateID) constant returns (uint totalVotes) {
-      Candidate currentCandidate = candidates[candidateID];
+      Candidate currentCandidate = currentElection.candidates[candidateID];
       return currentCandidate.voteCount;
     }
 
@@ -42,24 +55,24 @@ contract Election {
         currentVoter.voted = true;
         currentVoter.votedFor = candidateID;
 
-        candidates[candidateID].voteCount++;
+        currentElection.candidates[candidateID].voteCount++;
         Voted(candidateID, msg.sender);
       }
-      return candidates[candidateID].voteCount;
+      return currentElection.candidates[candidateID].voteCount;
     }
 
     function tallyElectionResults() constant returns (uint winningCandidateID) {
       uint winningVoteCount = 0;
-      for (uint candidateID = 0; candidateID < candidates.length; candidateID++) {
-        if (candidates[candidateID].voteCount > winningVoteCount) {
-          winningVoteCount = candidates[candidateID].voteCount;
+      for (uint candidateID = 0; candidateID < currentElection.candidates.length; candidateID++) {
+        if (currentElection.candidates[candidateID].voteCount > winningVoteCount) {
+          winningVoteCount = currentElection.candidates[candidateID].voteCount;
           winningCandidateID = candidateID;
         }
       }
     }
 
     function declareWinner() constant returns (string winnerName) {
-      bytes32 winnerBytes = candidates[tallyElectionResults()].name;
+      bytes32 winnerBytes = currentElection.candidates[tallyElectionResults()].name;
       winnerName = bytes32ToString(winnerBytes);
     }
 
