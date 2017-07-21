@@ -1,61 +1,61 @@
-var Election = artifacts.require("./Election.sol")
+var Election = artifacts.require('./Election.sol')
 
 contract('Election', function() {
 
-  it("begins elections with candidates", function() {
+  it('begins election with candidates', function() {
 
     var election;
 
     return Election.new(['Yes', 'No']).then(function(instance) {
       election = instance;
       return election.getCandidatesCount();
-    }).then(function(number_of_candidates) {
-      assert.equal(number_of_candidates, 2 , 'Candidates should be logged')
+    }).then(function(numberOfCandidates) {
+      assert.equal(numberOfCandidates, 2 , 'Wrong number of candidates')
     });
   });
 
-  it("starts elections with zero votes for candidates", function() {
+  it('starts election with zero votes for candidates', function() {
     var election;
 
     return Election.new(['Yes', 'No']).then(function(instance) {
       election = instance;
       return election.getCandidateVotes(0);
-    }).then(function(totalVotes) {
-      assert.equal(totalVotes, 0, 'No votes should be logged')
+    }).then(function(totalVotesForCandidate) {
+      assert.equal(totalVotesForCandidate, 0, 'No votes should have been logged for candidate')
     }).then(function() {
       return election.getCandidateVotes(1);
-    }).then(function(totalVotes) {
-      assert.equal(totalVotes,0, 'No votes')
+    }).then(function(totalVotesForCandidate) {
+      assert.equal(totalVotesForCandidate, 0, 'No votes should have been logged for candidate')
     });
   });
 
-  it("allows voter to vote Yes", function() {
+  it('allows voter to cast a Yes vote', function() {
     var election;
     var loggedEvent;
 
     return Election.new(['Yes', 'No']).then(function(instance) {
       election = instance;
       return election.vote(0);
-    }).then(function(result) {
-      loggedEvent = result.logs[0].event;
-      assert.equal(loggedEvent, "Voted", 'Vote was not registered!')
+    }).then(function(electionLog) {
+      loggedEvent = electionLog.logs[0].event;
+      assert.equal(loggedEvent, 'Voted', 'Voter could not cast a vote')
     });
   });
 
-  it("allows voter to vote No", function() {
+  it('allows voter to cast a No vote', function() {
     var election;
     var loggedEvent;
 
     return Election.new(['Yes', 'No']).then(function(instance) {
       election = instance;
       return election.vote(1);
-    }).then(function(result) {
-      loggedEvent = result.logs[0].event;
-      assert.equal(loggedEvent, "Voted", 'Vote was not registered!')
+    }).then(function(electionLog) {
+      loggedEvent = electionLog.logs[0].event;
+      assert.equal(loggedEvent, 'Voted', 'Voter could not cast a vote')
     });
   });
 
-  it("displays a cast vote", function() {
+  it('shows accurate number of cast votes for a candidate', function() {
     var election;
 
     return Election.new(['Yes', 'No']).then(function(instance) {
@@ -63,14 +63,14 @@ contract('Election', function() {
       return election.vote(1);
     }).then(function() {
       return election.getCandidateVotes(1);
-    }).then(function(totalVotes) {
-      assert.equal(totalVotes.toNumber(), 1, 'Cast vote is not displayed')
+    }).then(function(totalVotesForCandidate) {
+      assert.equal(totalVotesForCandidate.toNumber(), 1, 'Cannot find cast votes for candidate')
     });
   });
 
-  it("tallies election results", function() {
+  it('returns winning candidate ID', function() {
     var election;
-
+    
     return Election.new(['Yes', 'No']).then(function(instance) {
       election = instance;
       return election.vote(0);
@@ -81,7 +81,7 @@ contract('Election', function() {
     });
   });
 
-  it("declares election winner", function() {
+  it('declares election winner', function() {
     var election;
 
     return Election.new(['Yes', 'No']).then(function(instance) {
@@ -93,6 +93,5 @@ contract('Election', function() {
       assert.equal(electionWinner, 'Yes', 'Not returning right election winner');
     });
   });
-
 
 });
