@@ -12,6 +12,8 @@ contract Election {
     uint voteCount;
   }
 
+  event Voted(uint candidateID, address voter);
+
   mapping(address => Voter) public voters;
   Candidate[] public candidates;
 
@@ -33,13 +35,17 @@ contract Election {
     return currentCandidate.voteCount;
   }
 
-  function vote(uint candidate) {
+  function vote(uint candidate) returns (uint candidateVotes) {
     Voter sender = voters[msg.sender];
     require(!sender.voted);
     sender.voted = true;
     sender.votedFor = candidate;
 
     candidates[candidate].voteCount++;
+    Voted(candidate, msg.sender);
+
+    return candidates[candidate].voteCount;
+
   }
 
 
