@@ -54,13 +54,14 @@ contract NewElection {
     function vote(uint candidateID) returns (uint votesForCandidate) {
       Voter currentVoter = voters[msg.sender];
 
-      if (!currentVoter.voted) {
+      if (!currentVoter.voted || now < currentElection.deadline) {
         currentVoter.voted = true;
         currentVoter.votedFor = candidateID;
 
         currentElection.candidatesList[candidateID].voteCount++;
         Voted(candidateID, msg.sender);
       }
+
       return currentElection.candidatesList[candidateID].voteCount;
     }
 
