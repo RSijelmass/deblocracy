@@ -68,5 +68,18 @@ contract('Election', function() {
     });
   });
 
+  it("tallies election results", function() {
+    var election;
+
+    return Election.new(['Yes', 'No']).then(function(instance) {
+      election = instance;
+      return election.vote(0);
+    }).then(function() {
+      return election.tallyElectionResults();
+    }).then(function(winningCandidateID) {
+      assert.equal(winningCandidateID, 0, 'No winning candidate was returned')
+    });
+  });
+
 
 });

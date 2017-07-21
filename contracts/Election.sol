@@ -47,7 +47,7 @@ contract Election {
     return candidates[candidateID].voteCount;
   }
 
-  function countVotes() constant returns (uint winningCandidateID) {
+  function tallyElectionResults() constant returns (uint winningCandidateID) {
     uint winningVoteCount = 0;
     for (uint candidateID = 0; candidateID < candidates.length; candidateID++) {
       if (candidates[candidateID].voteCount > winningVoteCount) {
