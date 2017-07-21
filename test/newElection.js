@@ -1,13 +1,12 @@
 var NewElection = artifacts.require('./NewElection.sol')
 
 contract('NewElection', function() {
+  var title = "Fake EU Referendum";
+  var electionPeriod = 2;
 
   it('begins NewElection with candidates', function() {
 
     var currentElection;
-    var title = "Fake EU Referendum";
-    var electionPeriod = 2;
-
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
@@ -19,8 +18,6 @@ contract('NewElection', function() {
 
   it('starts NewElection with zero votes for candidates', function() {
     var currentElection;
-    var title = "Fake EU Referendum";
-    var electionPeriod = 2;
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
@@ -37,8 +34,6 @@ contract('NewElection', function() {
   it('allows voter to cast a Yes vote', function() {
     var currentElection;
     var loggedEvent;
-    var title = "Fake EU Referendum";
-    var electionPeriod = 2;
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
@@ -52,8 +47,6 @@ contract('NewElection', function() {
   it('allows voter to cast a No vote', function() {
     var currentElection;
     var loggedEvent;
-    var title = "Fake EU Referendum";
-    var electionPeriod = 2;
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
@@ -66,8 +59,6 @@ contract('NewElection', function() {
 
   it('shows accurate number of cast votes for a candidate', function() {
     var currentElection;
-    var title = "Fake EU Referendum";
-    var electionPeriod = 2;
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
@@ -81,8 +72,6 @@ contract('NewElection', function() {
 
   it('returns winning candidate ID', function() {
     var currentElection;
-    var title = "Fake EU Referendum";
-    var electionPeriod = 2;
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
@@ -96,8 +85,6 @@ contract('NewElection', function() {
 
   it('declares NewElection winner', function() {
     var currentElection;
-    var title = "Fake EU Referendum";
-    var electionPeriod = 2;
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
