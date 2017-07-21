@@ -13,7 +13,7 @@ contract NewElection {
   }
 
   struct Election {
-    address owner;
+    address administrator;
     string title;
     uint deadline;
     bool status;
@@ -24,16 +24,16 @@ contract NewElection {
   Election public currentElection;
   mapping(address => Voter) public voters;
 
-  function NewElection(string _title, uint _deadline, bytes32[] candidateNames) {
+  function NewElection(string _title, uint electionPeriod, bytes32[] candidateNames) {
     for (uint i = 0; i < candidateNames.length; i++) {
       currentElection.candidates.push(Candidate({
         name: candidateNames[i],
         voteCount: 0
         }));
       }
-      currentElection.owner = msg.sender;
+      currentElection.administrator = msg.sender;
       currentElection.title = _title;
-      currentElection.deadline = _deadline;
+      currentElection.deadline = now + electionPeriod * 1 days;
       currentElection.status = true;
     }
 
