@@ -1,5 +1,5 @@
 // Import the page's CSS. Webpack will know what to do with it.
-import "../stylesheets/app.css";
+// import "../stylesheets/app.css";
 
 // Import libraries we need.
 import { default as Web3} from 'web3';
@@ -42,6 +42,33 @@ window.App = {
     });
   },
 
+
+  sendCoin: function() {
+    var self = this;
+
+    var amount = parseInt(document.getElementById("amount").value);
+    var receiver = document.getElementById("receiver").value;
+
+    this.setStatus("Initiating transaction... (please wait)");
+
+    var meta;
+    MetaCoin.deployed().then(function(instance) {
+      meta = instance;
+      return meta.sendCoin(receiver, amount, {from: account});
+    }).then(function() {
+      self.setStatus("Transaction complete!");
+      self.refreshBalance();
+    }).catch(function(e) {
+      console.log(e);
+      self.setStatus("Error sending coin; see log.");
+    });
+  },
+
+  voteYes: function() {
+    document.getElementById("msg").innerHTML = "YASSS"
+  },
+
+};
 
 window.addEventListener('load', function() {
   // Checking if Web3 has been injected by the browser (Mist/MetaMask)
