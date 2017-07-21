@@ -1,5 +1,6 @@
 pragma solidity ^0.4.4;
 
+/*Change name to ElectoralSystem to be clearer*/
 contract NewElection {
 
   struct Voter {
@@ -21,7 +22,9 @@ contract NewElection {
   }
 
   event Voted(uint candidateID, address voter);
+
   Election public currentElection;
+
   mapping(address => Voter) public voters;
 
   function NewElection(string _title, uint _electionPeriod, bytes32[] candidateNames) {
@@ -47,18 +50,18 @@ contract NewElection {
     }
 
     function getCandidateVotes(uint candidateID) constant returns (uint totalVotes) {
-      Candidate currentCandidate = currentElection.candidatesList[candidateID];
-      return currentCandidate.voteCount;
+      return currentElection.candidatesList[candidateID].voteCount;
     }
 
     function vote(uint candidateID) returns (uint votesForCandidate) {
       Voter currentVoter = voters[msg.sender];
 
-      if (!currentVoter.voted || now < currentElection.deadline) {
+      if (!currentVoter.voted && now < currentElection.deadline) {
         currentVoter.voted = true;
         currentVoter.votedFor = candidateID;
 
         currentElection.candidatesList[candidateID].voteCount++;
+
         Voted(candidateID, msg.sender);
       }
 
