@@ -5,6 +5,7 @@ contract Election {
   struct Voter {
     bool voted;
     uint votedFor;
+    bool register;
   }
 
   struct Candidate {
@@ -14,7 +15,10 @@ contract Election {
 
   event Voted(uint candidateID, address voter);
 
+  event Register(address voter);
+
   mapping(address => Voter) public voters;
+
   Candidate[] public candidates;
 
   function Election(bytes32[] candidateNames) {
@@ -24,6 +28,13 @@ contract Election {
         voteCount: 0
       }));
     }
+  }
+
+  function registerVoter(){
+    Voter sender = voters[msg.sender];
+    sender.register = true;
+
+    Register(msg.sender);
   }
 
   function getCandidatesCount() public constant returns (uint) {

@@ -1,6 +1,6 @@
 var Election = artifacts.require("./Election.sol")
 
-contract('Election', function() {
+contract('Election', function(accounts) {
 
   it("begins elections with candidates", function() {
 
@@ -94,5 +94,17 @@ contract('Election', function() {
     });
   });
 
+  it("allows a voter to become registered", function() {
 
+    var election;
+    var loggedEvent;
+
+    return Election.new(['Yes', 'No']).then(function(instance) {
+      election = instance;
+      return instance.registerVoter(accounts[0]);
+    }).then(function(result) {
+      loggedEvent = result.logs[0].event;
+      assert.equal(loggedEvent, "Register", 'Voter has not been registered')
+    });
+  });
 });
