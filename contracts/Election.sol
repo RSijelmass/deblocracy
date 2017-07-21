@@ -26,7 +26,7 @@ contract Election {
     }
   }
 
-  function getCandidatesCount() public constant returns (uint) {
+  function getCandidatesCount() constant returns (uint) {
     return candidates.length;
   }
 
@@ -35,11 +35,11 @@ contract Election {
     return currentCandidate.voteCount;
   }
 
-  function vote(uint candidateID) returns (uint candidateVotes) {
-    Voter sender = voters[msg.sender];
-    require(!sender.voted);
-    sender.voted = true;
-    sender.votedFor = candidateID;
+  function vote(uint candidateID) returns (uint votesForCandidate) {
+    Voter currentVoter = voters[msg.sender];
+    require(!currentVoter.voted);
+    currentVoter.voted = true;
+    currentVoter.votedFor = candidateID;
 
     candidates[candidateID].voteCount++;
     Voted(candidateID, msg.sender);
