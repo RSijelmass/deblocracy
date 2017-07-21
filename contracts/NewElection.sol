@@ -21,9 +21,7 @@ contract NewElection {
   }
 
   event Voted(uint candidateID, address voter);
-
   Election public currentElection;
-
   mapping(address => Voter) public voters;
 
   function NewElection(string _title, uint _deadline, bytes32[] candidateNames) {
