@@ -57,6 +57,21 @@ contract('NewElection', function() {
     });
   });
 
+// Figure out how to make this a valid test
+  it('allows a voter to cast a vote within the given deadline', function() {
+    var currentElection;
+    var electionPeriod = 3;
+
+    return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
+      currentElection = instance;
+      return currentElection.vote(1);
+    }).then(function() {
+      return currentElection.getCandidateVotes(1);
+    }).then(function(totalVotesForCandidate) {
+      assert.equal(totalVotesForCandidate.toNumber(), 1, 'Cannot find cast a vote outside of the deadline')
+    });
+  })
+
   it('shows accurate number of cast votes for a candidate', function() {
     var currentElection;
 
