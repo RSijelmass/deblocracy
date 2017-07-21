@@ -57,6 +57,20 @@ contract Election {
     }
   }
 
+  function declareWinner() constant returns (string winnerName) {
+    bytes32 winnerBytes = candidates[tallyElectionResults()].name;
+    winnerName = bytes32ToString(winnerBytes);
+  }
 
+  function bytes32ToString(bytes32 data) returns (string) {
+    bytes memory bytesString = new bytes(32);
+    for (uint j=0; j<32; j++) {
+        byte char = byte(bytes32(uint(data) * 2 ** (8 * j)));
+        if (char != 0) {
+            bytesString[j] = char;
+        }
+    }
+    return string(bytesString);
+  }
 
 }

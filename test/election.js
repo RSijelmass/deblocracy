@@ -81,5 +81,18 @@ contract('Election', function() {
     });
   });
 
+  it("declares election winner", function() {
+    var election;
+
+    return Election.new(['Yes', 'No']).then(function(instance) {
+      election = instance;
+      return election.vote(0);
+    }).then(function() {
+      return election.declareWinner();
+    }).then(function(electionWinner) {
+      assert.equal(electionWinner, 'Yes', 'Not returning right election winner');
+    });
+  });
+
 
 });
