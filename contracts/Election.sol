@@ -30,11 +30,11 @@ contract Election {
     }
   }
 
-  function registerVoter(){
-    Voter sender = voters[msg.sender];
+  function registerVoter(address account){
+    Voter sender = voters[account];
     sender.register = true;
 
-    Register(msg.sender);
+    Register(account);
   }
 
   function getCandidatesCount() public constant returns (uint) {
@@ -48,13 +48,14 @@ contract Election {
 
   function vote(uint candidateID) returns (uint candidateVotes) {
     Voter sender = voters[msg.sender];
+    if (sender.register){
     require(!sender.voted);
     sender.voted = true;
     sender.votedFor = candidateID;
 
     candidates[candidateID].voteCount++;
     Voted(candidateID, msg.sender);
-
+    }
     return candidates[candidateID].voteCount;
   }
 

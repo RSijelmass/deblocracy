@@ -35,6 +35,8 @@ contract('Election', function(accounts) {
 
     return Election.new(['Yes', 'No']).then(function(instance) {
       election = instance;
+      return instance.registerVoter(accounts[0]);
+    }).then(function(result) {
       return election.vote(0);
     }).then(function(result) {
       loggedEvent = result.logs[0].event;
@@ -48,6 +50,8 @@ contract('Election', function(accounts) {
 
     return Election.new(['Yes', 'No']).then(function(instance) {
       election = instance;
+      return instance.registerVoter(accounts[0]);
+    }).then(function(result) {
       return election.vote(1);
     }).then(function(result) {
       loggedEvent = result.logs[0].event;
@@ -60,6 +64,8 @@ contract('Election', function(accounts) {
 
     return Election.new(['Yes', 'No']).then(function(instance) {
       election = instance;
+      return instance.registerVoter(accounts[0]);
+    }).then(function(result) {
       return election.vote(1);
     }).then(function() {
       return election.getCandidateVotes(1);
@@ -107,4 +113,6 @@ contract('Election', function(accounts) {
       assert.equal(loggedEvent, "Register", 'Voter has not been registered')
     });
   });
+
+
 });
