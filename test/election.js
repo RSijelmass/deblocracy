@@ -42,19 +42,31 @@ contract('Election', function() {
     });
   });
 
-    it("displays a cast vote", function() {
-      var election;
+  it("allows voter to vote No", function() {
+    var election;
+    var loggedEvent;
 
-      return Election.new(['Yes', 'No']).then(function(instance) {
-        election = instance;
-        return election.vote(1);
-      }).then(function() {
-        return election.getCandidateVotes(1);
-      }).then(function(totalVotes) {
-        console.log(totalVotes);
-        assert.equal(totalVotes.toNumber(), 1, 'Cast vote is not displayed')
-      });
+    return Election.new(['Yes', 'No']).then(function(instance) {
+      election = instance;
+      return election.vote(1);
+    }).then(function(result) {
+      loggedEvent = result.logs[0].event;
+      assert.equal(loggedEvent, "Voted", 'Vote was not registered!')
     });
+  });
+
+  it("displays a cast vote", function() {
+    var election;
+
+    return Election.new(['Yes', 'No']).then(function(instance) {
+      election = instance;
+      return election.vote(1);
+    }).then(function() {
+      return election.getCandidateVotes(1);
+    }).then(function(totalVotes) {
+      assert.equal(totalVotes.toNumber(), 1, 'Cast vote is not displayed')
+    });
+  });
 
 
 });
