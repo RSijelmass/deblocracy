@@ -37,6 +37,7 @@ contract('Election', function() {
       election = instance;
       return election.vote(0);
     }).then(function(result) {
+      console.log(result)
       loggedEvent = result.logs[0].event;
       assert.equal(loggedEvent, "Voted", 'Vote was not registered!')
     });
