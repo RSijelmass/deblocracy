@@ -6,6 +6,7 @@ contract NewElection {
   struct Voter {
     bool voted;
     uint votedFor;
+    bool registered;
   }
 
   struct Candidate {
@@ -22,6 +23,7 @@ contract NewElection {
   }
 
   event Voted(uint candidateID, address voter);
+  event Registered(address voter);
 
   Election public currentElection;
 
@@ -45,6 +47,12 @@ contract NewElection {
       }
     }
 
+    function registerVoter(address account){
+      Voter newVoter = voters[account];
+      newVoter.registered = true;
+      Registered(account);
+    }
+
     function getCandidatesCount() constant returns (uint) {
       return currentElection.candidatesList.length;
     }
@@ -56,12 +64,10 @@ contract NewElection {
     function vote(uint candidateID) returns (uint votesForCandidate) {
       Voter currentVoter = voters[msg.sender];
 
-      if (!currentVoter.voted && now < currentElection.deadline) {
+      if (!currentVoter.voted && now < currentElection.deadline && currentVoter.registered) {
         currentVoter.voted = true;
         currentVoter.votedFor = candidateID;
-
         currentElection.candidatesList[candidateID].voteCount++;
-
         Voted(candidateID, msg.sender);
       }
 

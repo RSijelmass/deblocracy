@@ -1,6 +1,6 @@
 var NewElection = artifacts.require('./NewElection.sol')
 
-contract('NewElection', function() {
+contract('NewElection', function(accounts) {
 
   it('begins NewElection with candidates', function() {
 
@@ -42,6 +42,8 @@ contract('NewElection', function() {
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
+      return instance.registerVoter(accounts[0]);
+    }).then(function(result) {
       return currentElection.vote(0);
     }).then(function(currentElectionLog) {
       loggedEvent = currentElectionLog.logs[0].event;
@@ -55,8 +57,11 @@ contract('NewElection', function() {
     var title = "Fake EU Referendum";
     var electionPeriod = 2;
 
+
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
+      return instance.registerVoter(accounts[0]);
+    }).then(function(result) {
       return currentElection.vote(1);
     }).then(function(currentElectionLog) {
       loggedEvent = currentElectionLog.logs[0].event;
@@ -71,6 +76,8 @@ contract('NewElection', function() {
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
+      return instance.registerVoter(accounts[0]);
+    }).then(function(result) {
       return currentElection.vote(1);
     }).then(function() {
       return currentElection.getCandidateVotes(1);
@@ -109,4 +116,18 @@ contract('NewElection', function() {
     });
   });
 
+  it("allows a voter to become registered", function() {
+    var currentElection;
+    var title = "Fake EU Referendum";
+    var electionPeriod = 2;
+    var loggedEvent;
+
+    return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
+      currentElection = instance;
+      return instance.registerVoter(accounts[0]);
+    }).then(function(result) {
+      loggedEvent = result.logs[0].event;
+      assert.equal(loggedEvent, "Registered", 'Voter has not been registered')
+    });
+  });
 });
