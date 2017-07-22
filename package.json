@@ -38,6 +38,7 @@
   "dependencies": {
     "babel-preset-node6": "^11.0.0",
     "ethereumjs-testrpc": "^4.0.1",
+    "file-system": "^2.2.2",
     "requirejs": "^2.3.4",
     "solc": "^0.4.13"
   },
