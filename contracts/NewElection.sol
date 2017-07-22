@@ -23,6 +23,7 @@ contract NewElection {
   }
 
   event Voted(uint candidateID, address voter);
+  
   event Registered(address voter);
 
   Election public currentElection;
