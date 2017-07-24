@@ -12,14 +12,12 @@ var accounts = web3.eth.accounts;
 function voteYes() {
 	document.getElementById("msg").innerHTML = "YOU VOTED YAASSSSSS"
 	contractInstance.vote(0, {from: assignAccount()})
-	console.log(assignAccount())
 	updateTally(0)
 };
 
 function voteNo() {
 	document.getElementById("msg").innerHTML = "You voted!"
 	contractInstance.vote(1, {from: assignAccount()})
-	console.log(assignAccount())
 	updateTally(1)
 };
 
@@ -30,8 +28,11 @@ function updateTally(candidate) {
 };
 
 function assignAccount() {
+	document.getElementById("account").innerHTML = "We've created your account"
 	var unique = true;
 	var num = Math.floor(Math.random() * accounts.length - 5);
 	var currentAccount = accounts.splice(num,1);
+	console.log(`${currentAccount}`)
+	document.getElementById("account").innerHTML = currentAccount;
 	return currentAccount.toString();
 };
