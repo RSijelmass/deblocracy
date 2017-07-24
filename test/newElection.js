@@ -130,4 +130,17 @@ contract('NewElection', function(accounts) {
       assert.equal(loggedEvent, "Registered", 'Voter has not been registered')
     });
   });
+
+	it("creates a new election", function() {
+		var currentContract;
+		var loggedEvent;
+
+		return NewElection.new().then(function(instance) {
+			currentContract = instance;
+			return currentContract.createElection('Fake Election', 2, ['Yes', 'No'])
+		}).then(function(result) {	
+			loggedEvent = result.logs[0].event;
+			assert.equal(loggedEvent, 'Created', 'Election has not been created')
+		});
+	});
 });
