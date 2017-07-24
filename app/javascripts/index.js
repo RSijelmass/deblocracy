@@ -4,17 +4,17 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 	ElectionContract = web3.eth.contract(data.abi);
 
 	//Hard coded address that needs to be set up & changed each time
-	var contractInstance = ElectionContract.at('0x8c1ff4b33f30a97157cd2b64b0f9c2ce5861e56e');
+	var contractInstance = ElectionContract.at('0x6594596cabe16ad4a9dfd582f91b81bf583ad23d');
 
 	function voteYes() {
+		contractInstance.vote(0, {from: web3.eth.accounts[1]})
 		document.getElementById("msg").innerHTML = "YOU VOTED YAASSSSSS"
-		contractInstance.vote(0, {from: web3.eth.accounts[0]})
 		updateTally(0)
 	}
 
 	function voteNo() {
+		contractInstance.vote(1, {from: web3.eth.accounts[1]})
 		document.getElementById("msg").innerHTML = "You voted!"
-		contractInstance.vote(1, {from: web3.eth.accounts[0]})
 		updateTally(1)
 	}
 
@@ -24,3 +24,7 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 		console.log(tally.toNumber())
 		document.getElementById(`${candidate}-votes`).innerHTML = tally;
 	};
+
+	function registerVoter() {
+		contractInstance.registerVoter(web3.eth.accounts[1], {from: web3.eth.accounts[1] });
+	}
