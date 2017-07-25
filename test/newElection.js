@@ -141,8 +141,8 @@ contract('NewElection', function(accounts) {
       return currentElection.vote(0);
     }).then(function(result) {
       return currentElection.displayOwnVote();
-    }).then(function(candidateID) {
-      assert.equal(candidateID, 0, 'Wrong vote cast')
+    }).then(function(candidateName) {
+      assert.equal(candidateName, 'Yes', 'Wrong vote cast')
     });
   });
 
