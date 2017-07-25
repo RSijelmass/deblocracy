@@ -64,7 +64,7 @@ contract NewElection {
     function vote(uint candidateID) returns (uint votesForCandidate) {
       Voter currentVoter = voters[msg.sender];
 
-      if (currentVoter.voted) throw; 
+      if (currentVoter.voted) throw "aefjhiosejfio";
       if (now > currentElection.deadline) throw;
       if (!currentVoter.registered) throw;
       currentVoter.voted = true;

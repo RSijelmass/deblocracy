@@ -10,11 +10,18 @@
 </head>
 <body>
   <h1>VotingChain</h1>
-  <br><br><button id="Register", onclick=registerVoter()>Register</button>
+
+  <h2>Enter your unique account number</h2>
+  <form onsubmit="return false;">
+    <input id='accountnumber',type='text', name='account'>
+    <input type='submit', name='submit', onclick="validate(); return false;">
+</form>
+    <br><br><p id="validatedaccountnumber"></p>
+
   <h2>Sample Referendum: Should Theresa May remain Prime Minister?</h2>
   <br>
-  <h2>Please click to generate your unique voting account number:<h2>
-  <br><button id="account", onclick=assignAccount()>Account Number</button>
+  <!-- <h2>Please click to generate your unique voting account number:<h2>
+  <br><button id="account", onclick=assignAccount()>Account Number</button> -->
   <h2>Please make your choice below:</h2>
   <br><br><button id="yes", onclick=voteYes()>Yes</button>
 	<br><br><button id="no", onclick=voteNo()>No</button>
