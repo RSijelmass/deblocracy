@@ -53,6 +53,10 @@ contract NewElection {
       Registered(account);
     }
 
+    function getElectionTitle() constant returns (string) {
+      return currentElection.title;
+    }
+
     function getCandidatesCount() constant returns (uint) {
       return currentElection.candidatesList.length;
     }
