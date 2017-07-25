@@ -4,7 +4,7 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 	ElectionContract = web3.eth.contract(data.abi);
 
 	//Hard coded address that needs to be set up & changed each time
-	var contractInstance = ElectionContract.at('0xc5524c5795fb8bd4be4fe303e5386945f80f1928');
+	var contractInstance = ElectionContract.at('0x38d71207a80068c23253c5c7b8f7ed931092d048');
 
 	function voteYes() {
 		document.getElementById("msg").innerHTML = "YOU VOTED YAASSSSSS"
@@ -18,7 +18,6 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 		updateTally(1)
 	}
 
-	//Not currently printing a number of votes to browser
 	function updateTally(candidate) {
 		var tally = contractInstance.getCandidateVotes.call(candidate)
 		console.log(tally.toNumber())
@@ -28,7 +27,11 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 	function displayResults(candidates) {
 		candidates.forEach(function(candidate) {
 			updateTally(candidate)
-			console.log("candidate", candidate)
-			console.log(contractInstance.currentElection.candidateList)
 		});
+		displayOwnVote();
 	};
+
+	function displayOwnVote() {
+		console.log(contractInstance.displayOwnVote())
+		document.getElementById("own-vote").innerHTML = contractInstance.displayOwnVote.call()
+	}
