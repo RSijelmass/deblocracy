@@ -130,4 +130,5 @@ contract('NewElection', function(accounts) {
       assert.equal(loggedEvent, "Registered", 'Voter has not been registered')
     });
   });
+
 });
