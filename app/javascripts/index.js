@@ -13,6 +13,7 @@ var accounts = web3.eth.accounts;
 var validNumber;
 
 
+
 function voteYes() {
 	console.log('hello')
 	console.log(validate())
@@ -29,22 +30,8 @@ function voteNo() {
 
 function updateTally(candidate) {
 	var tally = contractInstance.getCandidateVotes.call(candidate)
-	console.log(tally.toNumber())
 	document.getElementById(`${candidate}-votes`).innerHTML = tally;
 };
-
-// function assignAccount() {
-// 	var num = Math.floor(Math.random() * accounts.length - 5);
-// 	var currentAccount = accounts.splice(num,1);
-// 	console.log(`${currentAccount}`)
-// 	document.getElementById("account").innerHTML = currentAccount;
-// 	return currentAccount;
-// };
-
-// function registerVoter(account) {
-// 	contractInstance.registerVoter(account, {from: account });
-//
-// }
 
 function validate(number = document.getElementById("accountnumber").value) {
 	for(i=0; i<web3.eth.accounts.length; i++) {
@@ -57,3 +44,9 @@ function validate(number = document.getElementById("accountnumber").value) {
 	}
 	document.getElementById(`validatedaccountnumber`).innerHTML = `That is not a valid account number`;
 }
+
+function displayResults(candidates) {
+	candidates.forEach(function(candidate) {
+		updateTally(candidate)
+	});
+};
