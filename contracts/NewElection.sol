@@ -24,18 +24,25 @@ contract NewElection {
 
   event Voted(uint candidateID, address voter);
   event Registered(address voter);
+  event Created(string title);
 
   Election public currentElection;
 
+  mapping(struct => Election) public elections;
   mapping(address => Voter) public voters;
 
-  function NewElection(string _title, uint _electionPeriod, bytes32[] candidateNames) {
+  function NewElection() {
+
+  }
+
+  function createElection(string _title, uint _electionPeriod, bytes32[] candidateNames) returns (uint) {
     createCandidateList(candidateNames);
 
     currentElection.administrator = msg.sender;
     currentElection.title = _title;
     currentElection.deadline = now + _electionPeriod * 1 days;
     currentElection.status = true;
+    Created(_title);
   }
 
   function createCandidateList(bytes32[] candidateNames) {
