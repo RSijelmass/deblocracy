@@ -3,7 +3,7 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 //	var data = fs.readFileSync(".../build/contracts/NewElection.json");
 ElectionContract = web3.eth.contract(data.abi);
 
-var contractInstance = ElectionContract.at('0x693ac094b0713d53e27e1d488e695f031b0635a1');
+var contractInstance = ElectionContract.at('0x725ec654e75f32397f6a8a4d65b28e6397306e17');
 
 var accounts = web3.eth.accounts;
 
