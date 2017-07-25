@@ -15,8 +15,6 @@ var validNumber;
 
 
 function voteYes() {
-	console.log('hello')
-	console.log(validate())
 	contractInstance.vote(0, {from: validNumber})
 	document.getElementById("msg").innerHTML = "YOU VOTED YAASSSSSS"
 	updateTally(0)
