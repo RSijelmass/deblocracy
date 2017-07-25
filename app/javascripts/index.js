@@ -4,14 +4,12 @@ web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
 	ElectionContract = web3.eth.contract(data.abi);
 
 	//Hard coded address that needs to be set up & changed each time
-	var contractInstance = ElectionContract.at('0x870c7daaa8d959540e64f67c9f3ea3aba8780db6');
-	contractInstance = contractInstance.createElection('Fake referendum', 2, ['yes', 'no'], {from: web3.eth.accounts[0]});
-
-
+	var contractInstance = ElectionContract.at('0x5ce8ef27d5ad44f60081ed8654beb98f16e712a3');
 
 
 	function voteYes() {
 		document.getElementById("msg").innerHTML = "YOU VOTED YAASSSSSS"
+		console.log(contractInstance.createElection('Fake referendum', 2, ['yes', 'no'], {from: web3.eth.accounts[0]}));
 		contractInstance.vote(0, {from: web3.eth.accounts[0]})
 		updateTally(0)
 	}

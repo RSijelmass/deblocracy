@@ -30,11 +30,16 @@ contract NewElection {
 
   mapping(address => Voter) public voters;
 
-  function NewElection() {
+  function NewElection(string _title, uint _electionPeriod, bytes32[] candidateNames) {
+  createCandidateList(candidateNames);
 
-  }
+  currentElection.administrator = msg.sender;
+  currentElection.title = _title;
+  currentElection.deadline = now + _electionPeriod * 1 days;
+  currentElection.status = true;
+}
 
-	function createElection(string _title, uint _electionPeriod, bytes32[] candidateNames) returns (uint) {
+	function createElection(string _title, uint _electionPeriod, bytes32[] candidateNames) returns (string newTitle, uint newElectionPeriod, bytes32[] newCandidateNames) {
     createCandidateList(candidateNames);
 
     currentElection.administrator = msg.sender;
@@ -42,6 +47,7 @@ contract NewElection {
     currentElection.deadline = now + _electionPeriod * 1 days;
     currentElection.status = true;
 		Created(_title);
+    return  (currentElection.administrator; currentElection.title; currentElection.deadline; createCandidateList(candidateNames));
 	}
 
 
