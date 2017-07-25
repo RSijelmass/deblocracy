@@ -131,4 +131,16 @@ contract('NewElection', function(accounts) {
 			assert.equal(loggedEvent, 'Created', 'Election has not been created')
 		});
 	});
+
+  it("gets the election name", function() {
+
+   return NewElection.new().then(function(instance) {
+      currentContract = instance;
+      return currentContract.createElection('Fake Election', 2, ['Yes', 'No'])
+    }).then(function(result) {
+      return currentContract.getElectionName();
+    }).then(function(electionName) {
+      assert.equal(electionName, 'Fake Election' , 'Election has not been created')
+    });
+  });
 });

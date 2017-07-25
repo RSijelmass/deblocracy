@@ -45,7 +45,6 @@ contract NewElection {
 	}
 
 
-
   function createCandidateList(bytes32[] candidateNames) {
     for (uint i = 0; i < candidateNames.length; i++) {
       currentElection.candidatesList.push(Candidate({
@@ -67,6 +66,10 @@ contract NewElection {
 
     function getCandidateVotes(uint candidateID) constant returns (uint totalVotes) {
       return currentElection.candidatesList[candidateID].voteCount;
+    }
+
+    function getElectionName() constant returns (string electionTitle) {
+      return currentElection.title;
     }
 
     function vote(uint candidateID) returns (uint votesForCandidate) {
