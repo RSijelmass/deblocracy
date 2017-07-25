@@ -131,4 +131,19 @@ contract('NewElection', function(accounts) {
     });
   });
 
+  it("allows voter to retrieve own vote", function() {
+    var currentElection;
+    var title = "Fake EU Referendum";
+    var electionPeriod = 2;
+
+    return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
+      currentElection = instance;
+      return currentElection.vote(0);
+    }).then(function(result) {
+      return currentElection.displayOwnVote();
+    }).then(function(candidateID) {
+      assert.equal(candidateID, 0, 'Wrong vote cast')
+    });
+  });
+
 });

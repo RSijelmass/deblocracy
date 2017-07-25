@@ -61,6 +61,13 @@ contract NewElection {
       return currentElection.candidatesList[candidateID].voteCount;
     }
 
+    function displayOwnVote() constant returns (uint candidateID) {
+      Voter currentVoter = voters[msg.sender];
+
+      if(currentVoter.voted != true) throw;
+      return currentVoter.votedFor;
+    }
+
     function vote(uint candidateID) returns (uint votesForCandidate) {
       Voter currentVoter = voters[msg.sender];
 
