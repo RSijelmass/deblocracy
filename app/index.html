@@ -10,14 +10,38 @@
 </head>
 <body>
   <h1>VotingChain</h1>
-  <h2>Sample Referendum: Should Theresa May remain Prime Minister?</h2>
+
+  <h2>Enter your unique account number</h2>
+  <form onsubmit="return false;">
+    <input id='accountnumber',type='text', name='account'>
+    <input type='submit', name='submit', onclick="validate(); return false;">
+</form>
+    <br><br><p id="validatedaccountnumber"></p>
+
+  <h2>Should Theresa May remain Prime Minister?</h2>
   <br>
-  <h1>Please make your choice below:</h1>
+  <h2>Please make your choice below:</h2>
   <br><br><button id="yes", onclick=voteYes()>Yes</button>
 	<br><br><button id="no", onclick=voteNo()>No</button>
   <br><br><p id="msg"></p>
 	<br><br><p id='0-votes'></p>
 	<br><br><p id='1-votes'></p>
+  <br><br>
+  <h2>Should Lord Buckethead be the new PM?</h2>
+  <br><br><button>Yes</button>
+	<br><br><button>No</button>
+  <br><br>
+  <h2>Do you like puppies?</h2>
+  <br><br><button>Yes</button>
+	<br><br><button>No</button>
+  <br><br>
+  <h2>Should we ban the Welsh from using consonants?</h2>
+  <br><br><button>Yes</button>
+	<br><br><button>No</button>
+  <br><br>
+  <h2>Should we set Norfolk afloat into the North Sea?</h2>
+  <br><br><button>Yes</button>
+	<br><br><button>No</button>
   <br><br>
 </body>
 
