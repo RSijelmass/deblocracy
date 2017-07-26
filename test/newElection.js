@@ -93,7 +93,9 @@ contract('NewElection', function(accounts) {
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
-      return currentElection.vote(0);
+      return instance.registerVoter(accounts[0]);
+    }).then(function() {
+			return currentElection.vote(0);
     }).then(function() {
       return currentElection.tallyElectionResults();
     }).then(function(winningCandidateID) {
@@ -108,7 +110,9 @@ contract('NewElection', function(accounts) {
 
     return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
       currentElection = instance;
-      return currentElection.vote(0);
+      return instance.registerVoter(accounts[0]);
+    }).then(function() {
+			return currentElection.vote(0);
     }).then(function() {
       return currentElection.declareWinner();
     }).then(function(NewElectionWinner) {
@@ -128,6 +132,23 @@ contract('NewElection', function(accounts) {
     }).then(function(result) {
       loggedEvent = result.logs[0].event;
       assert.equal(loggedEvent, "Registered", 'Voter has not been registered')
+    });
+  });
+
+  it("allows voter to retrieve own vote", function() {
+    var currentElection;
+    var title = "Fake EU Referendum";
+    var electionPeriod = 2;
+
+    return NewElection.new(title, electionPeriod, ['Yes', 'No']).then(function(instance) {
+      currentElection = instance;
+      return instance.registerVoter(accounts[0]);
+    }).then(function() {
+			return currentElection.vote(0);
+    }).then(function(result) {
+      return currentElection.displayOwnVote();
+    }).then(function(candidateName) {
+      assert.equal(candidateName, 'Yes', 'Wrong vote cast')
     });
   });
 

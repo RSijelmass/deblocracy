@@ -43,8 +43,20 @@ function validate(number = document.getElementById("accountnumber").value) {
 	document.getElementById(`validatedaccountnumber`).innerHTML = `That is not a valid account number`;
 }
 
-function displayResults(candidates) {
-	candidates.forEach(function(candidate) {
-		updateTally(candidate)
-	});
-};
+	function updateTally(candidate) {
+		var tally = contractInstance.getCandidateVotes.call(candidate)
+		console.log(tally.toNumber())
+		document.getElementById(`${candidate}-votes`).innerHTML = tally;
+	};
+
+	function displayResults(candidates) {
+		candidates.forEach(function(candidate) {
+			updateTally(candidate)
+		});
+		displayOwnVote();
+	};
+
+	function displayOwnVote() {
+		console.log(contractInstance.displayOwnVote())
+		document.getElementById("own-vote").innerHTML = contractInstance.displayOwnVote.call()
+	}
