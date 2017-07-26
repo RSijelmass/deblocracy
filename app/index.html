@@ -1,48 +1,90 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>VotingChain Referendum</title>
-  <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
-  <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
-  <script src="../build/contracts/NewElection.json" type="text/javascript"></script>
-  <script src="./javascripts/index.js"></script>
-
-</head>
+  <head>
+    <title>Deblocracy</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
 <body>
-  <h1>VotingChain</h1>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Deblocracy</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><a href="#RegisterAnchor">Register</a></li>
+      <li><a href="#VoteAnchor">Vote</a></li>
+      <li><a href="#ResultsAnchor">Results</a></li>
+      <li><a href="https://github.com/RSijelmass/votingchain/blob/master/README.md">About Us</a></li>
+    </ul>
+  </div>
+</nav>
 
-  <h2>Enter your unique account number</h2>
-  <form onsubmit="return false;">
-    <input id='accountnumber',type='text', name='account'>
-    <input type='submit', name='submit', onclick="validate(); return false;">
-</form>
+  <div class='videoContainer' style="position: initial; z-index: -99; width: 100%; height: 100%; top: 0px;">
+  <iframe frameborder="0" height="100%" width="100%"
+    src="https://www.youtube.com/embed/PzVA6gYtPc0?controls=0&autoplay=1&start=180&rel=0&modestbranding=0&disablekb=1"
+    style =  "width: 100vw; height: 56.25vw;"  >
+  </iframe>
+  </div>
+
+  <div class = "container">
+
+  <div id='RegisterAnchor'></div>
+  <div id='Register'style="margin-top:75px; height:100vh">
+    <h1>Register To Vote</h1>
+    <p><h2>Enter your unique account number</h2>
+    <form onsubmit="return false;">
+    <input id='account-number', type='text', name='account'>
+    <input type='submit', name='submit', onclick="validate()">
+    </form>
     <br><br><p id="validatedaccountnumber"></p>
+    <hr>
+  </div>
 
-  <h2>Should Theresa May remain Prime Minister?</h2>
-  <br>
-  <h2>Please make your choice below:</h2>
-  <br><br><button id="yes", onclick=voteYes()>Yes</button>
-	<br><br><button id="no", onclick=voteNo()>No</button>
-  <br><br><p id="msg"></p>
-	<br><br><p id='0-votes'></p>
-	<br><br><p id='1-votes'></p>
-  <br><br>
-  <h2>Should Lord Buckethead be the new PM?</h2>
-  <br><br><button>Yes</button>
-	<br><br><button>No</button>
-  <br><br>
-  <h2>Do you like puppies?</h2>
-  <br><br><button>Yes</button>
-	<br><br><button>No</button>
-  <br><br>
-  <h2>Should we ban the Welsh from using consonants?</h2>
-  <br><br><button>Yes</button>
-	<br><br><button>No</button>
-  <br><br>
-  <h2>Should we set Norfolk afloat into the North Sea?</h2>
-  <br><br><button>Yes</button>
-	<br><br><button>No</button>
-  <br><br>
+  <div id="VoteAnchor" ></div>
+    <div id='Vote' style="margin-top:75px; height:100vh">
+    <h1 >Should Theresa May be replaced by a cat?</h1>
+    <a href="#" onclick="voteForCandidate(0)" class="btn btn-primary">Yes</a>
+    <a href="#" onclick="voteForCandidate(1)" class="btn btn-primary">No</a>
+    <p>
+    <div id="address"></div>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Option</th>
+            <th>Votes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Yes</td>
+            <td id="candidate-1"></td>
+          </tr>
+          <tr>
+            <td>No</td>
+            <td id="candidate-2"></td>
+          </tr>
+        </tbody>
+      </table>
+      <div id="msg"></div>
+    </div>
+  </div>
+  <hr>
+  <div id="ResultsAnchor"></div>
+  <div id='Results' style="margin-top:75px; height:100vh">
+    <p><h1>Your Vote</h1><p>
+    <a href="#" onclick="displayVote()" class="btn btn-primary">Verify</a>
+    <br><br>Your unique transaction ID: <div id="transaction-id"></div>
+    <br>You voted for: <div id="current-account-vote"></div>
+  </div>
+</div>
+
 </body>
-
+<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+<script src="app.js"></script>
 </html>
