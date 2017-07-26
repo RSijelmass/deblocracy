@@ -49,25 +49,6 @@ window.displayVote = function() {
   }
 }
 
-window.vote = function() {
-  let candidateID = parseInt($("#candidate").val());  // Assigns text input to candidateName
-  try {
-    $("#msg").html("Vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain. Please wait.")
-    $("#candidate").val("");
-
-    Voting.deployed().then(function(contractInstance) {
-      contractInstance.vote(candidateID, {from: web3.eth.accounts[0]}).then(function() {
-        let div_id = candidates[candidateID];
-        return contractInstance.getCandidateVotes.call(candidateID).then(function(v) {
-          $("#" + div_id).html(v.toString());
-          $("#msg").html("");
-        });
-      });
-    });
-  } catch (err) {
-    console.log(err);
-  }
-}
 
 window.validate = function() {
   let voterNumber = $("#account-number").val();
