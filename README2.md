@@ -38,18 +38,18 @@ Blockchain could solve this debacle. This is because with blockchain:
 - Being online, its accessibility increases
 
 *After brainstorming, these problems arose debating the downsides of the current voting system:*
-* *not many people go out to vote
-* Not many people register
-* People can’t vote because polling stations are far away (e.g. US)
-* Constrained choice on the ballot - a Yes / No referendum gives little indication of nuanced ideologies
-* Disillusion about voting 
-* Order of candidates is always the same 
-* Not safe to vote (e.g. Venezuala)
-* Voting easy to influence 
-* Lack of confidence in voting system 
-* Paper system in 2017 
-* Expensive to count votes 
-* Large margin of human error* 
+-  *not many people go out to vote*
+- *Not many people register*
+- *People can’t vote because polling stations are far away (e.g. US)*
+- *Constrained choice on the ballot - a Yes / No referendum gives little indication of nuanced ideologies*
+- *Disillusion about voting*
+- *Order of candidates is always the same* 
+- *Not safe to vote (e.g. Venezuala)*
+- *Voting easy to influence*
+- *Lack of confidence in voting system*
+- *Paper system in 2017*
+- *Expensive to count votes* 
+- *Large margin of human error* 
 
 ## User Stories
 
