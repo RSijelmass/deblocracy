@@ -17,41 +17,21 @@
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-env": "^1.6.0",
     "babel-preset-es2015": "^6.24.1",
-    "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.24.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.4",
     "eslint": "^3.19.0",
     "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-babel": "^4.1.1",
+    "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-promise": "^3.5.0",
     "eslint-plugin-standard": "^2.3.1",
     "html-webpack-plugin": "^2.29.0",
-    "json-loader": "^0.5.4",
+    "json-loader": "^0.5.7",
     "style-loader": "^0.13.2",
     "truffle-contract": "^1.1.11",
     "web3": "^0.18.4",
     "webpack": "^2.7.0",
-    "webpack-dev-server": "^2.5.1"
-  },
-  "dependencies": {
-    "babel-preset-node6": "^11.0.0",
-    "ethereumjs-testrpc": "^4.0.1",
-    "file-system": "^2.2.2",
-    "requirejs": "^2.3.4",
-    "solc": "^0.4.13"
-  },
-  "main": "truffle.js",
-  "directories": {
-    "test": "test"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/RSijelmass/votingchain.git"
-  },
-  "bugs": {
-    "url": "https://github.com/RSijelmass/votingchain/issues"
-  },
-  "homepage": "https://github.com/RSijelmass/votingchain#readme"
+    "webpack-dev-server": "^2.6.1"
+  }
 }
