@@ -13,12 +13,11 @@ let candidates = {0: "candidate-1", 1: "candidate-2"};
 var validNumber;
 var transactionID; //currently will disappear if page is refreshed
 
-
 window.voteForCandidate = function(candidateID) {
   console.log(validNumber);
   try {
     if (validNumber == null) {
-    document.getElementById("msg").innerHTML = "You need to be registered to vote.";
+      document.getElementById("msg").innerHTML = "You need to be registered to vote.";
     };
 
     Voting.deployed().then(function(contractInstance) {
@@ -49,29 +48,28 @@ window.displayVote = function() {
   }
 }
 
-
 window.validate = function() {
   let voterNumber = document.getElementById("account-number").value
 
   try {
     Voting.deployed().then(function(contractInstance) {
-    for(var i=0; i < web3.eth.accounts.length; i++) {
-  		if (web3.eth.accounts[i] == voterNumber) {
-  			validNumber = web3.eth.accounts[i]
-  			contractInstance.registerVoter(web3.eth.accounts[i], { from: web3.eth.accounts[0] }).then(function() {
-          document.getElementById("validatedaccountnumber").innerHTML = `You are now registered to vote as ID number ${validNumber}`;
-    			return validNumber;
-        });
-  		};
-  	};
-    document.getElementById("validatedaccountnumber").innerHTML = "That is not a valid account number";
-  });
+      for(var i=0; i < web3.eth.accounts.length; i++) {
+        if (web3.eth.accounts[i] == voterNumber) {
+          validNumber = web3.eth.accounts[i]
+          contractInstance.registerVoter(web3.eth.accounts[i], { from: web3.eth.accounts[0] }).then(function() {
+            document.getElementById("validatedaccountnumber").innerHTML = `You are now registered to vote as ID number ${validNumber}`;
+            return validNumber;
+          });
+        };
+      };
+      document.getElementById("validatedaccountnumber").innerHTML = "That is not a valid account number";
+    });
   } catch (err) {
     console.log(err);
   }
 }
 
-$( document ).ready(function() {
+window.addEventListener('load', function() {
   if (typeof web3 !== 'undefined') {
     console.warn("Using web3 detected from external source like Metamask")
     window.web3 = new Web3(web3.currentProvider);
