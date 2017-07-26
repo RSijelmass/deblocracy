@@ -105,7 +105,7 @@ $ node_modules/.bin/testrpc
 
 A similar output should be displayed:
 
-![testprc](images/testprcPrintscreen.png?raw=true)
+![testprc](images/testprc.png?raw=true)
 
 Open up node in a new terminal and type:
 ```
