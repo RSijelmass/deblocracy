@@ -39,8 +39,8 @@ window.displayVote = function() {
   try {
     Voting.deployed().then(function(contractInstance) {
       return contractInstance.displayOwnVote.call({from: validNumber}).then(function(vote) {
-        document.getElementById("transaction-id").innerHTML = transactionID
-        document.getElementById("current-account-vote").innerHTML = vote;
+        document.getElementById("transaction-id").innerHTML = `Your unique transaction ID: ${transactionID}`;
+        document.getElementById("current-account-vote").innerHTML = `You voted for: ${vote}`;
       });
     });
   } catch (err) {
