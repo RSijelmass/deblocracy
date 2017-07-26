@@ -18,16 +18,16 @@ window.voteForCandidate = function(candidateID) {
   console.log(validNumber);
   try {
     if (validNumber == null) {
-      $("#msg").html("You need to be registered to vote.");
+    document.getElementById("msg").innerHTML = "You need to be registered to vote.";
     };
 
     Voting.deployed().then(function(contractInstance) {
       contractInstance.vote(candidateID, {from: validNumber}).then(function(transaction) {
         transactionID = transaction.tx;
         let div_id = candidates[candidateID];
-        return contractInstance.getCandidateVotes.call(candidateID).then(function(v) {
+        return contractInstance.getCandidateVotes.call(candidateID).then(function(candidateVote) {
           alert("Your vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain!")
-          $("#" + div_id).html(v.toString());
+          document.getElementById(div_id).innerHTML = candidateVote.toString();
         });
       });
     });
@@ -40,8 +40,8 @@ window.displayVote = function() {
   try {
     Voting.deployed().then(function(contractInstance) {
       return contractInstance.displayOwnVote.call({from: validNumber}).then(function(vote) {
-        $("#transaction-id").html(transactionID);
-        $("#current-account-vote").html(vote);
+        document.getElementById("transaction-id").innerHTML = transactionID
+        document.getElementById("current-account-vote").innerHTML = vote;
       });
     });
   } catch (err) {
@@ -51,7 +51,7 @@ window.displayVote = function() {
 
 
 window.validate = function() {
-  let voterNumber = $("#account-number").val();
+  let voterNumber = document.getElementById("account-number").value
 
   try {
     Voting.deployed().then(function(contractInstance) {
@@ -59,12 +59,12 @@ window.validate = function() {
   		if (web3.eth.accounts[i] == voterNumber) {
   			validNumber = web3.eth.accounts[i]
   			contractInstance.registerVoter(web3.eth.accounts[i], { from: web3.eth.accounts[0] }).then(function() {
-          $("#validatedaccountnumber").html(`You are now registered to vote as ID number ${validNumber}`);
+          document.getElementById("validatedaccountnumber").innerHTML = `You are now registered to vote as ID number ${validNumber}`;
     			return validNumber;
         });
   		};
   	};
-    $("#validatedaccountnumber").html("That is not a valid account number");
+    document.getElementById("validatedaccountnumber").innerHTML = "That is not a valid account number";
   });
   } catch (err) {
     console.log(err);
@@ -85,8 +85,8 @@ $( document ).ready(function() {
   for (var i = 0; i < candidateNames.length; i++) {
     let id = candidateNames[i];
     Voting.deployed().then(function(contractInstance) {
-      contractInstance.getCandidateVotes.call(id).then(function(v) {
-        $("#" + candidates[id]).html(v.toString());
+      contractInstance.getCandidateVotes.call(id).then(function(candidateVote) {
+        document.getElementById(candidates[id]).innerHTML = candidateVote.toString();
       });
     })
   }
