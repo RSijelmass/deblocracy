@@ -45,6 +45,39 @@ Open up node in a new terminal and type:
 The `deployedContract.address` will return a unique contract address, that needs to replace the existing address in
 `app/javascripts/index.js` on line 9.
 
+#### After including migration
+Unfortunately, migration is only possible when truffle initialises webpack. Even more unfortunate is that this can only happen in an empty directory. Therefore if anyone is interested copying our work on their local computer, the following steps have to be taken:
+
+```
+mkdir new_directory
+cd new_directory
+npm init
+npm install ethereumjs-testrpc web3
+npm install -g truffle webpack
+truffle init webpack
+
+rm contracts/MetaCoin.sol contracts/ConvertLib.sol app/javascripts/app.js test/metacoin.js test/TestMetacoin.sol migrations/2_deploy_contracts.js
+rm -rf ./app
+
+cp ../contracts/Election.sol ./contracts/Election.sol
+cp ../test/election.js ./test/election.js
+cp ../migrations/2_deploy_contracts.js ./migrations/2_deploy_contracts.js
+cp -r ../app ./
+```
+
+On a separate terminal (in same directory), run:
+`node_modules/.bin/testrpc`
+
+On your previous terminal, run:
+```
+truffle test (all should pass)
+truffle compile
+truffle migrate
+npm run dev
+```
+
+On your localhost:8080, the app should now be launched.
+
 ## Purpose
 The Deblocracy application is an implementation of a decentralised voting system using smart contract and blockchain technology.
 
