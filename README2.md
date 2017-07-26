@@ -28,10 +28,8 @@ A set of practices agreed upon before starting our project. But, above anything 
 ```
 
 ## Problem to be Solved
-The aim of the project is **to make voting more decentralised**. Secondary goals, in turn, will be to make voting more: 
-- accessible 
-- transparent 
-- accurate
+The aim of the project is **to make voting more decentralised**. Secondary goals, in turn, will be to make voting more
+accessible, transparent and accurate.
 
 Blockchain could solve this debacle. This is because with blockchain:
 - Security is in its openness: it's controlled by everyone and no-one
@@ -40,8 +38,8 @@ Blockchain could solve this debacle. This is because with blockchain:
 - Being online, its accessibility increases
 
 *After brainstorming, these problems arose debating the downsides of the current voting system:*
-* not many people go out to vote 
-* Not many people register 
+* *not many people go out to vote
+* Not many people register
 * People can’t vote because polling stations are far away (e.g. US)
 * Constrained choice on the ballot - a Yes / No referendum gives little indication of nuanced ideologies
 * Disillusion about voting 
@@ -51,7 +49,7 @@ Blockchain could solve this debacle. This is because with blockchain:
 * Lack of confidence in voting system 
 * Paper system in 2017 
 * Expensive to count votes 
-* Large margin of human error 
+* Large margin of human error* 
 
 ## User Stories
 
