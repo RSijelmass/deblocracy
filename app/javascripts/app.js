@@ -1,5 +1,6 @@
 
 import "../stylesheets/app.css";
+import Chart from 'chart.js'
 
 import { default as Web3} from 'web3';
 import { default as contract } from 'truffle-contract'
@@ -48,6 +49,20 @@ window.displayVote = function() {
       return contractInstance.displayOwnVote.call({from: validNumber}).then(function(vote) {
         document.getElementById("transaction-id").innerHTML = `Your unique transaction ID: ${transactionID}`;
         document.getElementById("current-account-vote").innerHTML = `You voted for: ${vote}`;
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+          type: 'pie',
+          data: {
+            labels: ["Yes", "No"],
+            datasets: [{
+              backgroundColor: [
+                "#2ecc71",
+                "#3498db",
+              ],
+              data: [contractInstance.getCandidateVotes(0), contractInstance.getCandidateVotes(1)]
+            }]
+          }
+        });
       });
     });
   } catch (err) {
