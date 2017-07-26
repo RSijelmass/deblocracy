@@ -27,6 +27,7 @@ window.voteForCandidate = function(candidateID) {
         return contractInstance.getCandidateVotes.call(candidateID).then(function(candidateVote) {
           alert("Your vote has been submitted. The vote count will increment as soon as the vote is recorded on the blockchain!")
           document.getElementById(div_id).innerHTML = candidateVote.toString();
+          document.getElementById("results-table").style.display = "";
         });
       });
     });
@@ -55,6 +56,7 @@ window.displayVote = function() {
   }
 }
 
+
 window.validate = function() {
   let voterNumber = document.getElementById("account-number").value
 
@@ -82,6 +84,7 @@ window.logout = function() {
   document.getElementById("current-account-vote").innerHTML = "";
   document.getElementById("validatedaccountnumber").innerHTML = "";
   document.getElementById("account-number").value = "";
+  document.getElementById("results-table").style.display = "none";
 }
 
 window.addEventListener('load', function() {
@@ -94,6 +97,9 @@ window.addEventListener('load', function() {
   }
 
   Voting.setProvider(web3.currentProvider);
+
+  document.getElementById("results-table").style.display = "none";
+
   let candidateNames = Object.keys(candidates);
   for (var i = 0; i < candidateNames.length; i++) {
     let id = candidateNames[i];
