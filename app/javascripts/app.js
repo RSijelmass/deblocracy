@@ -36,7 +36,14 @@ window.voteForCandidate = function(candidateID) {
 }
 
 window.displayVote = function() {
+  console.log(validNumber);
   try {
+
+    if (validNumber == null) {
+      document.getElementById("transaction-id").innerHTML = "You need to be registered to view vote";
+      return;
+    };
+
     Voting.deployed().then(function(contractInstance) {
       return contractInstance.displayOwnVote.call({from: validNumber}).then(function(vote) {
         document.getElementById("transaction-id").innerHTML = `Your unique transaction ID: ${transactionID}`;
@@ -67,6 +74,14 @@ window.validate = function() {
   } catch (err) {
     console.log(err);
   }
+}
+
+window.logout = function() {
+  validNumber = null;
+  document.getElementById("transaction-id").innerHTML = "";
+  document.getElementById("current-account-vote").innerHTML = "";
+  document.getElementById("validatedaccountnumber").innerHTML = "";
+  document.getElementById("account-number").value = "";
 }
 
 window.addEventListener('load', function() {
