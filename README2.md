@@ -76,7 +76,52 @@ I want to be able to tally all votes cast
 
 Section | Language / Framework
 ------- | -------------------
-Database | Ethereum
+Database | Ethereum / testrpc
 Back-end | Solidity
 Front-end | Javascript / JQuery / Web3
 Testing | Truffle
+
+## How to Run
+
+#### Before including migration
+This setup is heavily inspired by the tutorial provided by Mahesh Murthy.
+
+Testrpc is a blockchain-like simulator, providing an environment in your own computer where you can play around with 10
+fake Ethereum accounts that all contain 100 ether each. This is ideal to familiarise yourself in blockchain, and set up
+a project without costing you any actual ether.
+
+To set up the development environment, Node and npm need to be installed. To check if this is the case, and which
+version you have:
+```
+$ npm -v (5.0.1)
+$ node -v (v6.10.3)
+```
+
+Then set up testrpc, solc (solidity compiler) and web3 in a separate terminal:
+
+``` 
+$ npm install ethereum-testrpc web3
+$ npm install solc
+$ node_modules/.bin/testrpc
+```
+
+A similar output should be displayed:
+
+![testprc](./testprcPrintscreen.png)
+
+Open up node in a new terminal and type:
+```
+[ritasijelmass:~/Projects/week11/voting]$ node
+> Web3 = require('web3')
+> web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:8545"));
+> code = fs.readFileSync('contracts/NewEelction.sol').toString()
+> solc = require('solc')
+> compiledCode = solc.compile(code)
+> abiDefinition = JSON.parse(compiledCode.contracts[':NewElection'].interface)
+> ElectionContract = web3.eth.contract(abiDefinition)
+> byteCode = compiledCode.contracts[':NewElection'].bytecode
+> deployedContract = ElectionContract.new('NAME OF REFERENDUM', ELECTION PERIOD, ['Yes', 'No'], {data: byteCode, from: web3.eth.accounts[0], gas: 4700000})
+> deployedContract.address
+```
+The `deployedContract.address` will return a unique contract address, that needs to replace the existing address in
+`app/javascripts/index.js` on line 9.
