@@ -4,7 +4,8 @@ Deblocracy
 ## Charter
 
 A set of practices agreed upon before starting our project. But, above anything else:
-- Well being is always over product and individual technical preferences
+
+*"Well being is always over product and individual technical preferences."*
 
 ```
 1. No person left behind 
@@ -27,16 +28,16 @@ A set of practices agreed upon before starting our project. But, above anything 
 ```
 
 ## Problem to be Solved
-The aim of the project is to make voting more decentralised. Secondary goals, in turn, will be to make voting more: 
+The aim of the project is **to make voting more decentralised**. Secondary goals, in turn, will be to make voting more: 
 - accessible 
 - transparent 
 - accurate
 
 Blockchain could solve this debacle. This is because with blockchain:
-- Security in its openness: it's controlled by everyone and no-one
-- It can't be corrupted, trusting the 51% majority
-- Anonimity takes away the lack of confidence and danger behind voting
-- Being online, accessibility increases
+- Security is in its openness: it's controlled by everyone and no-one
+- It can't be corrupted; trusting the 51% majority
+- Anonimity (for both the users and the miners) takes away the lack of confidence and danger behind voting
+- Being online, its accessibility increases
 
 *After brainstorming, these problems arose debating the downsides of the current voting system:*
 * not many people go out to vote 
@@ -53,6 +54,8 @@ Blockchain could solve this debacle. This is because with blockchain:
 * Large margin of human error 
 
 ## User Stories
+
+MVP:
 ```
 As an Admin,
 So that I can gauge opinion
