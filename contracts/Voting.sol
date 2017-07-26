@@ -1,7 +1,7 @@
 pragma solidity ^0.4.4;
 
 /*Change name to ElectoralSystem to be clearer*/
-contract NewElection {
+contract Voting {
 
   struct Voter {
     bool voted;
@@ -29,13 +29,18 @@ contract NewElection {
 
   mapping(address => Voter) public voters;
 
-  function NewElection(string _title, uint _electionPeriod, bytes32[] candidateNames) {
+  function Voting(string _title, uint _electionPeriod, bytes32[] candidateNames) {
     createCandidateList(candidateNames);
 
     currentElection.administrator = msg.sender;
     currentElection.title = _title;
     currentElection.deadline = now + _electionPeriod * 1 days;
     currentElection.status = true;
+  }
+
+  modifier registeredVoter() {
+    if (!voters[msg.sender].registered) throw;
+    _;
   }
 
   function createCandidateList(bytes32[] candidateNames) {
@@ -64,24 +69,22 @@ contract NewElection {
     function displayOwnVote() constant returns (string candidateName) {
       Voter currentVoter = voters[msg.sender];
 
-      //if(currentVoter.voted != true) throw;
-			uint candidateID = currentVoter.votedFor;
-			bytes32 candidate32 = currentElection.candidatesList[candidateID].name;
-			return bytes32ToString(candidate32);
-		}
+       //if(currentVoter.voted != true) throw;
+ 			uint candidateID = currentVoter.votedFor;
+ 			bytes32 candidate32 = currentElection.candidatesList[candidateID].name;
+ 			return bytes32ToString(candidate32);
+ 		}
 
-    function vote(uint candidateID) returns (uint votesForCandidate) {
+    function vote(uint candidateID) registeredVoter {
+
       Voter currentVoter = voters[msg.sender];
-
       if (currentVoter.voted) throw;
       if (now > currentElection.deadline) throw;
-      if (!currentVoter.registered) throw;
+
       currentVoter.voted = true;
       currentVoter.votedFor = candidateID;
       currentElection.candidatesList[candidateID].voteCount++;
       Voted(candidateID, msg.sender);
-
-      return currentElection.candidatesList[candidateID].voteCount;
     }
 
     function tallyElectionResults() constant returns (uint winningCandidateID) {
