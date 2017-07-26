@@ -52,7 +52,7 @@ Unfortunately, migration is only possible when truffle initialises webpack. Even
 mkdir new_directory
 cd new_directory
 npm init
-npm install ethereumjs-testrpc web3
+npm install -g ethereumjs-testrpc web3
 npm install -g truffle webpack
 truffle init webpack
 
