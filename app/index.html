@@ -154,20 +154,6 @@
                 </div>
               </div>
             </div>
-            <div class="panel-group">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h3 class="panel-title">
-                    <div class="row">
-                      <div class="col-md-6 text-left">
-                        <a href="#">Is Freddie Mercury really the Queen of the United Kingdom?</a>
-                      </div>
-                      <div class="col-md-6 text-right">Election has ended</div>
-                    </div>
-                  </h3>
-                </div>
-              </div>
-            </div>
               <div id="address"></div>
             </div>
           </div>
@@ -180,12 +166,13 @@
         <div class="container">
           <div class="row text-center">
             <div class="col-md-12 text-center">
-              <h1>Results</h1><br><br>
+              <h1>Results</h1>
+              <h3>Election: Should Theresa May be replaced by a giant and feral cat?</h3>
               <div class="table-responsive">
                 <table id="results-table" class="table table-bordered">
                   <thead>
                     <tr>
-                      <th>Option</th>
+                      <th><center>Option</th>
                       <th><center>Votes</center></th>
                     </tr>
                   </thead>
@@ -215,10 +202,24 @@
           <div class="row text-center">
             <div class="col-md-12 text-center">
               <p><h1>Your Vote</h1><p>
-                <a href="#/" onclick="displayVote()" class="btn btn-primary">Verify</a>
-                <br><br><div id="transaction-id"></div>
-                <br><br><div id="current-account-vote"></div>
-                  <br>
+                <h4>You can verify your vote to ensure it has not been tampered with.</h4>
+                <br>
+                <div class="panel-group">
+                  <div class="panel panel-default">
+                    <div class="panel-heading">
+                      <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse3" onclick="displayVote()">Verify</a>
+                      </h4>
+                    </div>
+                    <div id="collapse3" class="panel-collapse collapse">
+                      <div class="panel-body">
+                        <br><br><div id="transaction-id"></div>
+                        <br><br><div id="current-account-vote"></div>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
