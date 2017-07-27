@@ -4,51 +4,111 @@
   <title>Deblocracy</title>
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" type="text/css" href="stylesheets/app.css">
 </head>
 <body class="container">
-  <h1>Register To Vote</h1>
-  <p><h2>Enter your unique account number</h2>
-  <form onsubmit="return false;">
-    <input id='account-number', type='text', name='account'>
-    <input type='submit', name='submit', onclick="validate()">
-  </form>
-  <br><br><p id="validatedaccountnumber"></p>
-  <hr>
-  <h1>Should Theresa May be replaced by a cat?</h1>
-  <a href="#" onclick="voteForCandidate(0)" class="btn btn-primary">Yes</a>
-  <a href="#" onclick="voteForCandidate(1)" class="btn btn-primary">No</a>
-  <p>
-  <div id="address"></div>
-  <div class="table-responsive">
-    <table id="results-table" class="table table-bordered">
-      <thead>
-        <tr>
-          <th>Option</th>
-          <th>Votes</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Yes</td>
-          <td id="candidate-1"></td>
-        </tr>
-        <tr>
-          <td>No</td>
-          <td id="candidate-2"></td>
-        </tr>
-      </tbody>
-    </table>
-    <div id="msg"></div>
-  </div>
-  <hr>
-  <p><h1>Your Vote</h1><p>
-  <a href="#" onclick="displayVote()" class="btn btn-primary">Verify</a>
-  <br><br><div id="transaction-id"></div>
-  <br><div id="current-account-vote"></div>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Deblocracy</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="#RegisterAnchor">Register</a></li>
+        <li><a href="#VoteAnchor">Vote</a></li>
+        <li><a href="#ResultsAnchor">Results</a></li>
+        <li><a href="#VerifyAnchor">Verify</a></li>
+        <li><a href="https://github.com/RSijelmass/votingchain/blob/master/README.md">About Us</a></li>
+      </ul>
+    </div>
+  </nav>
 
-  <a href="#" onclick="logout()" class="btn btn-primary">Log Out</a>
-</body>
-<script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
-<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
-<script src="app.js"></script>
-</html>
+  <div id='RegisterAnchor'></div>
+  <!-- Register Section -->
+  <section id="services">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-12 text-center">
+          <h1>Register To Vote</h1>
+          <p><h2>Enter your unique account number</h2>
+            <form onsubmit="return false;">
+              <input id='account-number', type='text', name='account'>
+              <input type='submit', name='submit', onclick="validate()">
+            </form>
+            <br><br><p id="validatedaccountnumber"></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <div id='VoteAnchor'></div>
+    <!-- Vote Section -->
+    <section id="services">
+      <div class="container">
+        <div class="row text-center">
+          <div class="col-md-12 text-center">
+            <h1>Should Theresa May be replaced by a cat?</h1>
+            <a href="#" onclick="voteForCandidate(0)" class="btn btn-primary">Yes</a>
+            <a href="#" onclick="voteForCandidate(1)" class="btn btn-primary">No</a>
+            <p>
+              <div id="address"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div id='ResultsAnchor'></div>
+      <!-- Results Section -->
+      <section id="services">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-12 text-center">
+              <div class="table-responsive">
+                <table id="results-table" class="table table-bordered">
+                  <thead>
+                    <tr>
+                      <th>Option</th>
+                      <th>Votes</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Yes</td>
+                      <td id="candidate-1"></td>
+                    </tr>
+                    <tr>
+                      <td>No</td>
+                      <td id="candidate-2"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <div id="msg"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- Verify Vote Section -->
+      <div id='VerifyAnchor'></div>
+      <section id="services">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-12 text-center">
+              <p><h1>Your Vote</h1><p>
+                <a href="#" onclick="displayVote()" class="btn btn-primary">Verify</a>
+                <br><br><div id="transaction-id"></div>
+                <br><div id="current-account-vote"></div>
+
+                <a href="#" onclick="logout()" class="btn btn-primary">Log Out</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </body>
+      <script src="https://cdn.rawgit.com/ethereum/web3.js/develop/dist/web3.js"></script>
+      <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+      <script src="app.js"></script>
+      </html>
