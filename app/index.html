@@ -4,6 +4,7 @@
   <title>Deblocracy</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Jura|Russo+One" rel="stylesheet">
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -13,7 +14,7 @@
   <nav class="navbar navbar-inverse navbar-fixed-top">
     <div class="container-fluid">
       <div class="navbar-header">
-        <a class="navbar-brand" href="#">Deblocracy</a>
+        <a class="navbar-brand" href="#">deblocracy</a>
       </div>
       <ul class="nav navbar-nav">
         <li><a href="#RegisterAnchor">Register</a></li>
@@ -27,8 +28,7 @@
       </ul>
     </div>
   </nav>
-  <div id='HomeAnchor'></div>
-  <!-- Register Section -->
+
   <section id="logo">
     <div id="headerContainer" class="container">
       <div class="row text-center">
@@ -50,6 +50,7 @@
           <p><h2>Enter your unique account number</h2>
             <form onsubmit="return false;">
               <input id='account-number', type='text', name='account'>
+              <br><br><p>
               <input type='submit', name='submit', onclick="validate()">
             </form>
             <br><br><p id="validatedaccountnumber"></p>
@@ -168,6 +169,7 @@
             <div class="col-md-12 text-center">
               <h1>Results</h1>
               <h3>Election: Should Theresa May be replaced by a giant and feral cat?</h3>
+              <br>
               <div class="table-responsive">
                 <table id="results-table" class="table table-bordered">
                   <thead>
@@ -215,6 +217,7 @@
                       <div class="panel-body">
                         <br><br><div id="transaction-id"></div>
                         <br><br><div id="current-account-vote"></div>
+                        <br><br><div id="vote-tampering-warning"></div>
                         <br>
                       </div>
                     </div>

@@ -49,6 +49,7 @@ window.displayVote = function() {
       return contractInstance.displayOwnVote.call({from: validNumber}).then(function(vote) {
         document.getElementById("transaction-id").innerHTML = `Your unique transaction ID: ${transactionID}`;
         document.getElementById("current-account-vote").innerHTML = `You voted for: ${vote}`;
+        document.getElementById("vote-tampering-warning").innerHTML = "If you do not recognise your transaction ID or your vote, please report tampering.";
       });
     });
   } catch (err) {
