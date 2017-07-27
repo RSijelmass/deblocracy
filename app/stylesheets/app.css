@@ -5,10 +5,20 @@ body{
   font-family: "Open Sans", sans-serif;
 }
 
+.navbar-brand {
+  font-family: 'Russo One', sans-serif;
+}
+
+#results-table {
+  font-size: 25px;
+  text-align: center;
+}
+
 label {
   display: inline-block;
   width: 100px;
 }
+
 
 input {
   width: 500px;
@@ -28,6 +38,10 @@ h1, h2 {
   margin-bottom: 10px;
 }
 
+h1 {
+  font-family: 'Jura', sans-serif;
+}
+
 h2 {
   color: #AAA;
   font-size: 32px;
@@ -43,6 +57,7 @@ h3 {
   color: black;
 }
 
+
 #balance {
   color: black;
 }
@@ -52,6 +67,22 @@ h3 {
 }
 
 section {
-  padding-top: 200px;
+  padding-top: 120px;
   height:100vh;
+}
+
+#logo {
+  padding-top: 15px;
+}
+
+#validatedaccountnumber {
+  font-size: 20px;
+}
+
+#transaction-id {
+  font-size: 20px;
+}
+
+#current-account-vote {
+  font-size: 20px;
 }
