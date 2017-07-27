@@ -22,8 +22,23 @@
         <li><a href="#VerifyAnchor">Verify</a></li>
         <li><a href="https://github.com/RSijelmass/votingchain/blob/master/README.md">About Us</a></li>
       </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li id='logout'><a href="#/" onclick="logout()">Log Out</a></li>
+      </ul>
     </div>
   </nav>
+  <div id='HomeAnchor'></div>
+  <!-- Register Section -->
+  <section id="logo">
+    <div id="headerContainer" class="container">
+      <div class="row text-center">
+        <div class="col-md-12 text-center">
+          <img src='deblocracy.png'>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
   <div id='RegisterAnchor'></div>
   <!-- Register Section -->
@@ -66,8 +81,8 @@
                 </div>
                 <div id="collapse1" class="panel-collapse collapse">
                   <div class="panel-body">
-                    <a href="#" onclick="voteForCandidate(0)" class="btn btn-primary">Yes</a>
-                    <a href="#" onclick="voteForCandidate(1)" class="btn btn-primary">No</a>
+                    <a href="#/" onclick="voteForCandidate(0)" class="btn btn-primary">Yes</a>
+                    <a href="#/" onclick="voteForCandidate(1)" class="btn btn-primary">No</a>
                   </div>
                 </div>
               </div>
@@ -200,11 +215,10 @@
           <div class="row text-center">
             <div class="col-md-12 text-center">
               <p><h1>Your Vote</h1><p>
-                <a href="#" onclick="displayVote()" class="btn btn-primary">Verify</a>
+                <a href="#/" onclick="displayVote()" class="btn btn-primary">Verify</a>
                 <br><br><div id="transaction-id"></div>
-                <br><div id="current-account-vote"></div>
-
-                <a href="#" onclick="logout()" class="btn btn-primary">Log Out</a>
+                <br><br><div id="current-account-vote"></div>
+                  <br>
               </div>
             </div>
           </div>

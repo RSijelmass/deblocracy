@@ -60,3 +60,19 @@ section {
   padding-top: 200px;
   height:100vh;
 }
+
+#logo {
+  padding-top: 15px;
+}
+
+#validatedaccountnumber {
+  font-size: 20px;
+}
+
+#transaction-id {
+  font-size: 20px;
+}
+
+#current-account-vote {
+  font-size: 20px;
+}
