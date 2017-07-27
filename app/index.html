@@ -2,8 +2,11 @@
 <html>
 <head>
   <title>Deblocracy</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
   <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="stylesheets/app.css">
 </head>
 <body class="container">
@@ -47,10 +50,109 @@
       <div class="container">
         <div class="row text-center">
           <div class="col-md-12 text-center">
-            <h1>Should Theresa May be replaced by a cat?</h1>
-            <a href="#" onclick="voteForCandidate(0)" class="btn btn-primary">Yes</a>
-            <a href="#" onclick="voteForCandidate(1)" class="btn btn-primary">No</a>
-            <p>
+            <h1>Live Elections</h1>
+            <p><h3>Click on an election to cast your vote</h3><br>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <div class="row">
+                      <div class="col-md-6 text-left">
+                        <a data-toggle="collapse" href="#collapse1">Should Theresa May be replaced by a giant and feral cat?</a>
+                      </div>
+                      <div class="col-md-6 text-right">2 days 15 hours 43 mins left</div>
+                    </div>
+                  </h3>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <a href="#" onclick="voteForCandidate(0)" class="btn btn-primary">Yes</a>
+                    <a href="#" onclick="voteForCandidate(1)" class="btn btn-primary">No</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <div class="row">
+                      <div class="col-md-6 text-left">
+                        <a href="#">Should hats be mandatory?</a>
+                      </div>
+                      <div class="col-md-6 text-right">5 days 07 hours 20 mins left</div>
+                    </div>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <div class="row">
+                      <div class="col-md-6 text-left">
+                        <a href="#">Should crocodiles be given the right to vote?</a>
+                      </div>
+                      <div class="col-md-6 text-right">7 days 12 hours 45 mins left</div>
+                    </div>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <br><br><br>
+            <h1>Closed Elections</h1><br>
+            <p><h3>Click on an election to view the results</h3><br>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <div class="row">
+                      <div class="col-md-6 text-left">
+                        <a data-toggle="collapse" href="#collapse2">Who should be the council leader of Springfield?</a>
+                      </div>
+                      <div class="col-md-6 text-right">Election has ended</div>
+                    </div>
+                  </h3>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <h4>Lord Buckethead (88% of votes)<br><br></h4>
+                    <p>Total Votes Cast: 23,392
+                    <br>Voter Turnout: 73%</p>
+                    <br>Date of Election: 25/6/2017
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <div class="row">
+                      <div class="col-md-6 text-left">
+                        <a href="#">Should we make socks and sandals illegal?</a>
+                      </div>
+                      <div class="col-md-6 text-right">Election has ended</div>
+                    </div>
+                  </h3>
+                </div>
+              </div>
+            </div>
+            <div class="panel-group">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">
+                    <div class="row">
+                      <div class="col-md-6 text-left">
+                        <a href="#">Is Freddie Mercury really the Queen of the United Kingdom?</a>
+                      </div>
+                      <div class="col-md-6 text-right">Election has ended</div>
+                    </div>
+                  </h3>
+                </div>
+              </div>
+            </div>
               <div id="address"></div>
             </div>
           </div>
@@ -63,12 +165,13 @@
         <div class="container">
           <div class="row text-center">
             <div class="col-md-12 text-center">
+              <h1>Results</h1><br><br>
               <div class="table-responsive">
                 <table id="results-table" class="table table-bordered">
                   <thead>
                     <tr>
                       <th>Option</th>
-                      <th>Votes</th>
+                      <th><center>Votes</center></th>
                     </tr>
                   </thead>
                   <tbody>
