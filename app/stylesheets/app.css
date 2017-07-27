@@ -50,3 +50,12 @@ h3 {
 .hint {
   color: #666;
 }
+
+section {
+  padding: 100px 0;
+}
+
+div.container {
+    width: 100%;
+    border: 1px solid gray;
+}
