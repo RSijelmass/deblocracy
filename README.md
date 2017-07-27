@@ -10,9 +10,10 @@ Before migration, one needed to deploy a new contract (in many tedious steps) ea
 This made us consider a less horendous UX.
 
 #### After including migration
-Unfortunately, migration is only possible when truffle initialises webpack. Even more unfortunate is that this can only happen in an empty directory. Therefore if anyone is interested copying our work on their local computer, the following steps have to be taken:
+Unfortunately, migration is only possible when truffle initialises webpack. Even more unfortunate is that this can only happen in an empty directory. Therefore if anyone is interested copying our work on their local computer, the following steps have to be taken to clone and then create a new directory inside that cloned directory to run the application:
 
 ```
+git clone https://github.com/RSijelmass/votingchain
 mkdir new_directory
 cd new_directory
 npm init
