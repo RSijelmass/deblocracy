@@ -1,6 +1,6 @@
 Deblocracy
 ============
-
+A decentralised voting app built on blockchain, using Ethereum. To see a quick example of how the app looks, click [here](https://vimeo.com/227889051).
 
 ## How to Run
 
